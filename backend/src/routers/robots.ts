@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { MongooseController } from '../controllers/mongoose.controller.js';
+import { Controller } from '../controllers/controller.js';
 import { Robot } from '../models/robot.model.js';
 
 export const robotsRouter = Router();
 
-export const robotsController = new MongooseController(Robot);
+export const robotsController = new Controller(Robot);
 
 robotsRouter.get('/', robotsController.getAllController);
 robotsRouter.get('/:id', robotsController.getController);
