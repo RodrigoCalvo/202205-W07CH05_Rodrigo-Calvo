@@ -1,9 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 
-//Explicacion en book.model.ts
-//Ya no podemos externalizar i/o del modelo porque mongoose
-//los gestiona a ambos
 export class MongooseController<T> {
     constructor(public model: mongoose.Model<T>) {}
 

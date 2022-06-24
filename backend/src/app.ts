@@ -1,17 +1,14 @@
-import express, { NextFunction, Request, response, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
-import { booksRouter } from './routers/books.js';
-import { notesRouter } from './routers/notes.js';
+import { robotsRouter } from './routers/robots.js';
 
 export const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/notes', notesRouter);
-app.use('/books', booksRouter);
+app.use('/robots', robotsRouter);
 
-// Control de errores
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
     req;
     next;
