@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 
-export class MongooseController<T> {
+export class Controller<T> {
     constructor(public model: mongoose.Model<T>) {}
 
     getAllController = async (req: Request, resp: Response) => {
