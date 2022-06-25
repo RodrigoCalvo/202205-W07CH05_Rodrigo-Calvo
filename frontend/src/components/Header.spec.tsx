@@ -16,7 +16,7 @@ describe('Given the Header component', () => {
                     <Header menuOptions={mockMenuOptions} />
                 </BrowserRouter>
             );
-            const element = screen.getByText(/naipes/i);
+            const element = screen.getByText(/robots/i);
             expect(element).toBeInTheDocument();
             const element2 = screen.getByText(/test label/i);
             expect(element2).toBeInTheDocument();
@@ -25,3 +25,4 @@ describe('Given the Header component', () => {
         });
     });
 });
+

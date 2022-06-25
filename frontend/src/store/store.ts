@@ -1,19 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { iCartProduct, iProduct } from '../models/card';
-import { cartProductReducer } from '../reducers/cartProducts/cartProduct.reducer';
-import { productReducer } from '../reducers/products/product.reducer';
+import { iRobot } from '../models/robot';
+import { robotReducer } from '../reducers/robots/robot.reducer';
 
 export interface iStore {
-    cartProducts: Array<iCartProduct>;
-    products: Array<iProduct>;
+    robots: Array<iRobot>;
 }
 
 const preloadedState: iStore = {
-    cartProducts: [] as Array<iCartProduct>,
-    products: [] as Array<iProduct>,
+    robots: [] as Array<iRobot>,
 };
 
 export const store = configureStore({
-    reducer: { cartProducts: cartProductReducer, products: productReducer },
+    reducer: { robots: robotReducer },
     preloadedState,
 });

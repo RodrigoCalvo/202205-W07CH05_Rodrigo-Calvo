@@ -1,18 +1,18 @@
-import { Product } from '../models/card';
-import { ProductHttpStore } from './product.http.store';
+import { iRobot, Robot } from '../models/robot';
+import { RobotHttpStore } from './robot.http.store';
 
-const prod1 = new Product({ number: 0, suit: 'Oros' }, 0, 0, '', false);
-const prod2 = new Product({ number: 0, suit: 'Copas' }, 0, 0, '', false);
-const prod3 = new Product({ number: 0, suit: 'Bastos' }, 0, 0, '', false);
+const prod1 = new Robot('', '', 0, 0, '') as iRobot;
+const prod2 = new Robot('', '', 0, 0, '') as iRobot;
+const prod3 = new Robot('', '', 0, 0, '') as iRobot;
 
-describe('Given CartProductHttpStore service', () => {
+describe('Given RobotHttpStore service', () => {
     describe('When called getProduct', () => {
         test('Then it should return a product from the cart db', async () => {
             global.fetch = jest.fn().mockResolvedValue({
                 json: jest.fn().mockResolvedValue(prod1),
             });
-            const api = new ProductHttpStore();
-            const response = await api.getProduct('');
+            const api = new RobotHttpStore();
+            const response = await api.getRobot('');
             expect(response).toEqual(prod1);
         });
     });
@@ -21,8 +21,8 @@ describe('Given CartProductHttpStore service', () => {
             global.fetch = jest.fn().mockResolvedValue({
                 json: jest.fn().mockResolvedValue([prod1, prod3]),
             });
-            const api = new ProductHttpStore();
-            const response = await api.getAllProducts();
+            const api = new RobotHttpStore();
+            const response = await api.getAllRobots();
             expect(response).toEqual([prod1, prod3]);
         });
     });
@@ -31,8 +31,8 @@ describe('Given CartProductHttpStore service', () => {
             global.fetch = jest.fn().mockResolvedValue({
                 json: jest.fn().mockResolvedValue(prod2),
             });
-            const api = new ProductHttpStore();
-            const response = await api.setProduct(prod2);
+            const api = new RobotHttpStore();
+            const response = await api.setRobot(prod2);
             expect(response).toEqual(prod2);
         });
     });
@@ -43,10 +43,10 @@ describe('Given CartProductHttpStore service', () => {
                     .fn()
                     .mockResolvedValue({ ...prod1, promotion: true }),
             });
-            const api = new ProductHttpStore();
-            const response = await api.updateProduct({
+            const api = new RobotHttpStore();
+            const response = await api.updateRobot(prod1._id, {
                 ...prod1,
-                promotion: true,
+                name: 'new',
             });
             const expectedResponse = { ...prod1, promotion: true };
             expect(response).toEqual(expectedResponse);
@@ -57,10 +57,9 @@ describe('Given CartProductHttpStore service', () => {
             global.fetch = jest.fn().mockResolvedValue({
                 json: jest.fn().mockResolvedValue(prod3),
             });
-            const api = new ProductHttpStore();
-            const response = await api.deleteProduct(prod3);
+            const api = new RobotHttpStore();
+            const response = await api.deleteRobot(prod3._id);
             expect(response).toEqual(prod3);
         });
     });
 });
-

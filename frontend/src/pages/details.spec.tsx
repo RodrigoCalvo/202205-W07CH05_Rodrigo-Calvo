@@ -1,7 +1,6 @@
 import { BrowserRouter, useNavigate } from 'react-router-dom';
-import { iCartProduct, iProduct } from '../models/card';
-import { cartProductReducer } from '../reducers/cartProducts/cartProduct.reducer';
-import { productReducer } from '../reducers/products/product.reducer';
+import { iRobot } from '../models/robot';
+import { robotReducer } from '../reducers/robots/robot.reducer';
 import { iStore } from '../store/store';
 import { fireEvent, render, screen } from '../utils/test-utils';
 import { Details } from './details';
@@ -11,30 +10,28 @@ jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn(),
 }));
 const reducer = {
-    cartProducts: cartProductReducer,
-    products: productReducer,
+    robots: robotReducer,
 };
-const mockedArray: Array<iProduct> = [
+const mockedArray: Array<iRobot> = [
     {
-        id: 'test1',
-        card: { number: 0, suit: 'Copas' },
-        price: 0,
-        stock: 0,
-        description: 'test description',
-        promotion: true,
+        _id: '',
+        name: 'test1',
+        image: '',
+        speed: 0,
+        life: 0,
+        born: '',
     },
     {
-        id: 'test2',
-        card: { number: 0, suit: 'Espadas' },
-        price: 0,
-        stock: 0,
-        description: '',
-        promotion: false,
+        _id: '',
+        name: 'test2',
+        image: '',
+        speed: 0,
+        life: 0,
+        born: '',
     },
 ];
 const preloadedState: iStore = {
-    cartProducts: [] as Array<iCartProduct>,
-    products: mockedArray as Array<iProduct>,
+    robots: mockedArray as Array<iRobot>,
 };
 const mockedNavigate = jest.fn();
 

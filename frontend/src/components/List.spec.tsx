@@ -1,26 +1,23 @@
 import { render, screen } from '../utils/test-utils';
 import { BrowserRouter } from 'react-router-dom';
-import { iCartProduct, iProduct } from '../models/card';
-import { cartProductReducer } from '../reducers/cartProducts/cartProduct.reducer';
-import { productReducer } from '../reducers/products/product.reducer';
+import { robotReducer } from '../reducers/robots/robot.reducer';
 import { List } from './List';
 import { iStore } from '../store/store';
+import { iRobot } from '../models/robot';
 
 const reducer = {
-    cartProducts: cartProductReducer,
-    products: productReducer,
+    robots: robotReducer,
 };
 const preloadedState: iStore = {
-    cartProducts: [] as Array<iCartProduct>,
-    products: [] as Array<iProduct>,
+    robots: [] as Array<iRobot>,
 };
-const mockProduct: iProduct = {
-    id: 'test 1',
-    card: { number: 0, suit: 'Oros' },
-    price: 0,
-    stock: 0,
-    description: '',
-    promotion: false,
+const mockProduct: iRobot = {
+    _id: '',
+    name: 'test1',
+    image: '',
+    speed: 0,
+    life: 0,
+    born: '',
 };
 
 describe('Given the List component', () => {
@@ -28,13 +25,13 @@ describe('Given the List component', () => {
         test('Then it should render a product card for each array element', () => {
             render(
                 <BrowserRouter>
-                    <List products={[mockProduct]} />
+                    <List data={[mockProduct]} />
                 </BrowserRouter>,
                 { preloadedState, reducer }
             );
             const element = screen.getAllByRole('listitem');
             expect(element).toHaveLength([mockProduct].length);
-            const element2 = screen.getByText(/test 1/i);
+            const element2 = screen.getByText(/test1/i);
             expect(element2).toBeInTheDocument();
         });
     });

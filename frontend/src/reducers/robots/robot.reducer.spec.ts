@@ -1,64 +1,71 @@
-import { iCartProduct } from '../../models/card';
-import { cartProductReducer } from './cartProduct.reducer';
-import * as actions from './cartProduct.action.creators';
+import { robotReducer } from './robot.reducer';
+import * as actions from './robot.action.creators';
 import { AnyAction } from '@reduxjs/toolkit';
+import { iRobot } from '../../models/robot';
 
-const mockedArray: Array<iCartProduct> = [
+const mockedArray: Array<iRobot> = [
     {
-        id: 'test1',
-        amount: 0,
+        _id: '1',
+        name: 'test1',
+        image: '',
+        speed: 0,
+        life: 0,
+        born: '',
     },
     {
-        id: 'test2',
-        amount: 0,
+        _id: '2',
+        name: 'test1',
+        image: '',
+        speed: 0,
+        life: 0,
+        born: '',
     },
 ];
 describe('Given characters reducer', () => {
     describe('When calling it with load action with an array of characters', () => {
         test('It should return a new state with that array of characters', () => {
-            const newState = cartProductReducer(
+            const newState = robotReducer(
                 [],
-                actions.loadCartProductsAction(mockedArray)
+                actions.loadRobotsAction(mockedArray)
             );
             expect(newState).toEqual(mockedArray);
         });
     });
     describe('When calling it with add action with a character', () => {
         test('It should return a new state with an array with that character', () => {
-            const newState = cartProductReducer(
+            const newState = robotReducer(
                 [],
-                actions.addCartProductsAction(mockedArray[0])
+                actions.addRobotAction(mockedArray[0])
             );
             expect(newState).toEqual([mockedArray[0]]);
         });
     });
     describe('When calling it with update action with a character or partial character', () => {
         test('It should return a new state with a updated array of characters', () => {
-            const mockedAmount = 2;
-            const newState = cartProductReducer(
+            const newState = robotReducer(
                 mockedArray,
-                actions.updateCartProductsAction({
+                actions.updateRobotAction({
                     ...mockedArray[0],
-                    amount: mockedAmount,
+                    name: 'true',
                 })
             );
-            expect(
-                newState.find((item) => item.id === 'test1')?.amount
-            ).toEqual(mockedAmount);
+            expect(newState.find((item) => item._id === '1')?.name).toBe(
+                'true'
+            );
         });
     });
     describe('When calling it with delete action with a character', () => {
         test('It should return a new state with an array of previous characters without the deleted one', () => {
-            const newState = cartProductReducer(
+            const newState = robotReducer(
                 mockedArray,
-                actions.deleteCartProductsAction(mockedArray[0])
+                actions.deleteRobotAction(mockedArray[0])
             );
             expect(newState).toEqual([mockedArray[1]]);
         });
     });
     describe('When calling it with a non related action', () => {
         test('It should return a new state equal to the previous one', () => {
-            const newState = cartProductReducer(mockedArray, {} as AnyAction);
+            const newState = robotReducer(mockedArray, {} as AnyAction);
             expect(newState).toEqual(mockedArray);
         });
     });
