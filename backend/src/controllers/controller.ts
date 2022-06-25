@@ -14,6 +14,7 @@ export class Controller<T> {
         try {
             req;
             const result = await this.model.find();
+            if (!result) throw new Error('Not data');
             resp.setHeader('Content-type', 'application/json');
             resp.end(JSON.stringify(result));
         } catch (error) {
@@ -59,28 +60,20 @@ export class Controller<T> {
         next: NextFunction
     ) => {
         try {
-            if (req.params.id.length !== 24)
+            if (req.params.id.length !== 24) {
                 throw new URIError('ID length not valid');
+            }
+            if (req.body.speed && (req.body.speed > 10 || req.body.speed < 0)) {
+                throw new RangeError('Speed value must be between 0 and 10');
+            }
+            if (req.body.life && (req.body.life > 10 || req.body.life < 0)) {
+                throw new RangeError('Life value must be between 0 and 10');
+            }
+
             const result = await this.model.findByIdAndUpdate(
                 req.params.id,
                 req.body
             );
-            if ((JSON.parse(req.body) as Partial<iRobot>).speed) {
-                const speed = (JSON.parse(req.body) as Partial<iRobot>)
-                    .speed as number;
-                if (speed > 10 || speed < 0) {
-                    throw new RangeError(
-                        'Speed value must be between 0 and 10'
-                    );
-                }
-            }
-            if ((JSON.parse(req.body) as Partial<iRobot>).life) {
-                const life = (JSON.parse(req.body) as Partial<iRobot>)
-                    .life as number;
-                if (life > 10 || life < 0) {
-                    throw new RangeError('Life value must be between 0 and 10');
-                }
-            }
             if (result) {
                 resp.setHeader('Content-type', 'application/json');
                 resp.end(JSON.stringify(result));
