@@ -1,34 +1,31 @@
 import { BrowserRouter } from 'react-router-dom';
-import { iCartProduct, iProduct } from '../models/card';
-import { cartProductReducer } from '../reducers/cartProducts/cartProduct.reducer';
-import { productReducer } from '../reducers/products/product.reducer';
+import { iRobot } from '../models/robot';
+import { robotReducer } from '../reducers/robots/robot.reducer';
 import { iStore } from '../store/store';
 import { render, screen } from '../utils/test-utils';
-import { Card } from './Card';
+import { RobotCard } from './Card';
 
 const reducer = {
-    cartProducts: cartProductReducer,
-    products: productReducer,
+    robots: robotReducer,
 };
 const preloadedState: iStore = {
-    cartProducts: [] as Array<iCartProduct>,
-    products: [] as Array<iProduct>,
+    robots: [] as Array<iRobot>,
 };
-const mockProduct1: iProduct = {
-    id: 'test 1',
-    card: { number: 0, suit: 'Oros' },
-    price: 0,
-    stock: 0,
-    description: '',
-    promotion: false,
+const mockItem1: iRobot = {
+    _id: '',
+    name: 'test1',
+    image: '',
+    speed: 0,
+    life: 0,
+    born: '',
 };
-const mockProduct2: iProduct = {
-    id: 'test 2',
-    card: { number: 0, suit: 'Oros' },
-    price: 0,
-    stock: 0,
-    description: '',
-    promotion: true,
+const mockItem2: iRobot = {
+    _id: '',
+    name: 'test2',
+    image: '',
+    speed: 0,
+    life: 0,
+    born: '',
 };
 
 describe('Given the Card component', () => {
@@ -36,7 +33,7 @@ describe('Given the Card component', () => {
         test('Then it should render with the object data', () => {
             render(
                 <BrowserRouter>
-                    <Card product={mockProduct1} />
+                    <RobotCard robot={mockItem1} />
                 </BrowserRouter>,
                 { preloadedState, reducer }
             );

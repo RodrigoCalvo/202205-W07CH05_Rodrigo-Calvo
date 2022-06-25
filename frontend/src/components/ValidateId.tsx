@@ -4,9 +4,9 @@ import { NotFound } from './NotFound';
 
 export function ValidateId() {
     const { id } = useParams();
-    const detailRegex = /^(ID-)(Oros|Copas|Espadas|Bastos)-\d$/;
+    //const detailRegex = /^(ID-)(Oros|Copas|Espadas|Bastos)-\d$/;
 
-    if (id?.match(detailRegex)) {
+    if (id) {
         return <Details id={id} />;
     } else {
         return <NotFound />;
@@ -14,3 +14,4 @@ export function ValidateId() {
 }
 
 export default ValidateId;
+

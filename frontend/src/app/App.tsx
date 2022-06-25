@@ -3,10 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import ValidateId from '../components/ValidateId';
-import { loadCartProductsAction } from '../reducers/cartProducts/cartProduct.action.creators';
-import { loadProductsAction } from '../reducers/products/product.action.creators';
-import { CartProductHttpStore } from '../services/cartProduct.http.store';
-import { ProductHttpStore } from '../services/product.http.store';
+import { loadRobotsAction } from '../reducers/robots/robot.action.creators';
+import { RobotHttpStore } from '../services/robot.http.store';
 
 export interface iRouterItem {
     path: string;
@@ -16,55 +14,22 @@ export interface iRouterItem {
 
 export function App() {
     const dispatcher = useDispatch();
-    const apiProducts = useMemo(() => new ProductHttpStore(), []);
-    const apiCart = useMemo(() => new CartProductHttpStore(), []);
+    const apiRobots = useMemo(() => new RobotHttpStore(), []);
 
     useEffect(() => {
-        apiProducts
-            .getAllProducts()
-            .then((products) => dispatcher(loadProductsAction(products)));
-    }, [apiProducts, dispatcher]);
-    useEffect(() => {
-        apiCart
-            .getAllProducts()
-            .then((products) => dispatcher(loadCartProductsAction(products)));
-    }, [apiCart, dispatcher]);
+        apiRobots
+            .getAllRobots()
+            .then((robots) => dispatcher(loadRobotsAction(robots)));
+    }, [apiRobots, dispatcher]);
 
     const HomePage = React.lazy(() => import('../pages/home'));
-    const CategoryPage = React.lazy(() => import('../pages/category'));
-    const CartPage = React.lazy(() => import('../pages/cart'));
 
     const routerOptions: Array<iRouterItem> = [
-        { path: '/', label: 'Ofertas', page: <HomePage></HomePage> },
-        {
-            path: '/oros',
-            label: 'Oros',
-            page: <CategoryPage suit="Oros"></CategoryPage>,
-        },
-        {
-            path: '/copas',
-            label: 'Copas',
-            page: <CategoryPage suit="Copas"></CategoryPage>,
-        },
-        {
-            path: '/espadas',
-            label: 'Espadas',
-            page: <CategoryPage suit="Espadas"></CategoryPage>,
-        },
-        {
-            path: '/bastos',
-            label: 'Bastos',
-            page: <CategoryPage suit="Bastos"></CategoryPage>,
-        },
+        { path: '/', label: 'Inicio', page: <HomePage></HomePage> },
         {
             path: '/details/:id',
             label: 'Detalles',
             page: <ValidateId></ValidateId>,
-        },
-        {
-            path: '/cart',
-            label: 'Carro de la compra',
-            page: <CartPage></CartPage>,
         },
     ];
     return (

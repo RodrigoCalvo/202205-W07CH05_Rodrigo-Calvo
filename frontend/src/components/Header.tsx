@@ -5,8 +5,8 @@ export function Header({ menuOptions }: { menuOptions: Array<iRouterItem> }) {
     const template = (
         <header>
             <hgroup>
-                <h1>Naipes españoles al por menor</h1>
-                <h2>(pero menor, menor)</h2>
+                <h1>Robots</h1>
+                <h2>(war robots)</h2>
             </hgroup>
             <nav>
                 <ul>
@@ -25,3 +25,4 @@ export function Header({ menuOptions }: { menuOptions: Array<iRouterItem> }) {
     );
     return template;
 }
+
