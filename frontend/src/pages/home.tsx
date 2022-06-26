@@ -4,7 +4,6 @@ import { iStore } from '../store/store';
 
 export function Home() {
     const robots = useSelector((store: iStore) => store.robots);
-    console.log(robots);
 
     const template = (
         <>
