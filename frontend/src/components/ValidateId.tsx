@@ -1,17 +1,20 @@
 import { useParams } from 'react-router-dom';
 import Details from '../pages/details';
+import { Edit } from './Edit';
 import { NotFound } from './NotFound';
 
-export function ValidateId() {
+export function ValidateId({ edit }: { edit: boolean }) {
     const { id } = useParams();
-    //const detailRegex = /^(ID-)(Oros|Copas|Espadas|Bastos)-\d$/;
 
-    if (id) {
-        return <Details id={id} />;
+    if (id?.length === 24) {
+        if (edit) {
+            return <Edit id={id} />;
+        } else {
+            return <Details id={id} />;
+        }
     } else {
         return <NotFound />;
     }
 }
 
 export default ValidateId;
-
