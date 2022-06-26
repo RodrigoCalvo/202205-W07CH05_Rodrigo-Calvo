@@ -1,1 +1,5 @@
-<p>list works!</p>
+<ul>
+  <li *ngFor="let robot of robots">
+    <app-card [robot]="robot"></app-card>
+  </li>
+</ul>
