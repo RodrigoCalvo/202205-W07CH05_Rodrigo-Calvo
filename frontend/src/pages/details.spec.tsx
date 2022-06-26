@@ -14,7 +14,7 @@ const reducer = {
 };
 const mockedArray: Array<iRobot> = [
     {
-        _id: '',
+        _id: '1',
         name: 'test1',
         image: '',
         speed: 0,
@@ -22,7 +22,7 @@ const mockedArray: Array<iRobot> = [
         born: '',
     },
     {
-        _id: '',
+        _id: '2',
         name: 'test2',
         image: '',
         speed: 0,
@@ -40,11 +40,11 @@ describe('Given Details component', () => {
         test('It should render the info of the related product', () => {
             render(
                 <BrowserRouter>
-                    <Details id="test1" />
+                    <Details id="1" />
                 </BrowserRouter>,
                 { preloadedState, reducer }
             );
-            const testElement = screen.getByText(/test description/i);
+            const testElement = screen.getByText(/test1/i);
             expect(testElement).toBeInTheDocument();
         });
     });

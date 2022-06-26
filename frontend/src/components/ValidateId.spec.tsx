@@ -15,7 +15,7 @@ const reducer = {
 };
 const mockedArray: Array<iRobot> = [
     {
-        _id: '',
+        _id: '111111111111111111111111',
         name: 'test1',
         image: '',
         speed: 0,
@@ -23,7 +23,7 @@ const mockedArray: Array<iRobot> = [
         born: '',
     },
     {
-        _id: '',
+        _id: '2',
         name: 'test2',
         image: '',
         speed: 0,
@@ -31,7 +31,7 @@ const mockedArray: Array<iRobot> = [
         born: '',
     },
     {
-        _id: '',
+        _id: '3',
         name: 'test3',
         image: '',
         speed: 0,
@@ -44,20 +44,37 @@ const preloadedState: iStore = {
 };
 
 describe('Given the ValidateId component', () => {
-    describe('When calling it and the url param is valid', () => {
+    describe('When calling it without edit and the url param is valid', () => {
         beforeEach(() => {
             (useParams as jest.Mock).mockImplementation(() => ({
-                id: 'ID-Oros-1',
+                id: '111111111111111111111111',
             }));
         });
         test('It should render the Details component', () => {
             render(
                 <BrowserRouter>
-                    <ValidateId />
+                    <ValidateId edit={false} />
                 </BrowserRouter>,
                 { preloadedState, reducer }
             );
-            const testElement = screen.getByText(/id-oros/i);
+            const testElement = screen.getByText(/test1/i);
+            expect(testElement).toBeInTheDocument();
+        });
+    });
+    describe('When calling it with edit and the url param is valid', () => {
+        beforeEach(() => {
+            (useParams as jest.Mock).mockImplementation(() => ({
+                id: '111111111111111111111111',
+            }));
+        });
+        test('It should render the Edit component', () => {
+            render(
+                <BrowserRouter>
+                    <ValidateId edit={true} />
+                </BrowserRouter>,
+                { preloadedState, reducer }
+            );
+            const testElement = screen.getByText(/edit/i);
             expect(testElement).toBeInTheDocument();
         });
     });
@@ -71,7 +88,7 @@ describe('Given the ValidateId component', () => {
             };
             render(
                 <BrowserRouter>
-                    <ValidateId />
+                    <ValidateId edit={false} />
                 </BrowserRouter>,
                 { preloadedState, reducer }
             );

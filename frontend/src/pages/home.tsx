@@ -1,14 +1,15 @@
 import { useSelector } from 'react-redux';
+import { Add } from '../components/Add';
 import { List } from '../components/List';
 import { iStore } from '../store/store';
 
 export function Home() {
     const robots = useSelector((store: iStore) => store.robots);
-    console.log(robots);
 
     const template = (
         <>
-            <p>Robots</p>
+            <Add />
+            <h3>Robots</h3>
             <List data={robots} />
         </>
     );

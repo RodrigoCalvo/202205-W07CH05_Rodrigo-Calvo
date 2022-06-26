@@ -5,7 +5,7 @@ export function List({ data }: { data: Array<iRobot> }) {
     const template = (
         <ul>
             {data.map((item) => (
-                <li key={item._id}>
+                <li key={item._id + item.name}>
                     <RobotCard robot={item} />
                 </li>
             ))}

@@ -41,7 +41,7 @@ describe('Given the Home component', () => {
             );
             const testElement = screen.getByText(/test1/i);
             expect(testElement).toBeInTheDocument();
-            const testElement2 = screen.getByText(/promo/i);
+            const testElement2 = screen.getByText(/robots/i);
             expect(testElement2).toBeInTheDocument();
         });
     });

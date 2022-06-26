@@ -29,7 +29,12 @@ export function App() {
         {
             path: '/details/:id',
             label: 'Detalles',
-            page: <ValidateId></ValidateId>,
+            page: <ValidateId edit={false}></ValidateId>,
+        },
+        {
+            path: '/details/:id/edit',
+            label: 'Editar',
+            page: <ValidateId edit={true}></ValidateId>,
         },
     ];
     return (
