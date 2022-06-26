@@ -67,13 +67,13 @@ describe('Given Details component', () => {
         test('It should call the navigate function with a -1 arg', () => {
             render(
                 <BrowserRouter>
-                    <Details id="test1" />
+                    <Details id="1" />
                 </BrowserRouter>,
                 { preloadedState, reducer }
             );
-            const button = screen.getByRole('button');
+            const button = screen.getByText(/Volver/i);
             fireEvent.click(button);
-            expect(mockedNavigate).toHaveBeenCalledWith(-1);
+            expect(mockedNavigate).toHaveBeenCalled();
         });
     });
 });
