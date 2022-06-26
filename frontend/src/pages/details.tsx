@@ -1,4 +1,3 @@
-import { SyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { iStore } from '../store/store';
@@ -7,9 +6,8 @@ export function Details({ id }: { id: string }) {
     const products = useSelector((store: iStore) => store.robots);
     const detailsProduct = products.find((item) => item._id === id);
     const navigate = useNavigate();
-    function handleClick(ev: SyntheticEvent) {
-        const eventTarget = ev.target as HTMLElement;
-        if (eventTarget.innerText === 'Volver') navigate('../');
+    function back() {
+        navigate('../');
     }
     const template = (
         <>
@@ -23,7 +21,7 @@ export function Details({ id }: { id: string }) {
                     <p>Resistencia: {detailsProduct.life}</p>
                     <p>Velocidad: {detailsProduct.speed}</p>
                     <p>Fecha de construcción: {detailsProduct.born}</p>
-                    <button onClick={handleClick}>Volver</button>
+                    <button onClick={back}>Volver</button>
                     <Link to="./edit">
                         <button>Editar</button>
                     </Link>
