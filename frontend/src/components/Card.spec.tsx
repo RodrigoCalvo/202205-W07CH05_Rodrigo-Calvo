@@ -37,7 +37,7 @@ describe('Given the Card component', () => {
                 </BrowserRouter>,
                 { preloadedState, reducer }
             );
-            const element = screen.getByText(/test 1/i);
+            const element = screen.getByText(/test1/i);
             expect(element).toBeInTheDocument();
         });
     });

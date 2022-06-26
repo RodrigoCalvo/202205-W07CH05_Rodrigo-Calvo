@@ -15,7 +15,7 @@ const reducer = {
 };
 const mockedArray: Array<iRobot> = [
     {
-        _id: '',
+        _id: '1',
         name: 'test1',
         image: '',
         speed: 0,
@@ -23,7 +23,7 @@ const mockedArray: Array<iRobot> = [
         born: '',
     },
     {
-        _id: '',
+        _id: '2',
         name: 'test2',
         image: '',
         speed: 0,
@@ -31,7 +31,7 @@ const mockedArray: Array<iRobot> = [
         born: '',
     },
     {
-        _id: '',
+        _id: '3',
         name: 'test3',
         image: '',
         speed: 0,
@@ -47,7 +47,7 @@ describe('Given the ValidateId component', () => {
     describe('When calling it and the url param is valid', () => {
         beforeEach(() => {
             (useParams as jest.Mock).mockImplementation(() => ({
-                id: 'ID-Oros-1',
+                id: '1',
             }));
         });
         test('It should render the Details component', () => {
@@ -57,7 +57,7 @@ describe('Given the ValidateId component', () => {
                 </BrowserRouter>,
                 { preloadedState, reducer }
             );
-            const testElement = screen.getByText(/id-oros/i);
+            const testElement = screen.getByText(/test1/i);
             expect(testElement).toBeInTheDocument();
         });
     });
