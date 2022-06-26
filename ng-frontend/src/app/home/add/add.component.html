@@ -1,0 +1,43 @@
+<aside>
+  <button *ngIf="!show; else showForm" (click)="toggleShow()">
+    Añadir un nuevo robot
+  </button>
+  <slot></slot>
+  <ng-template #showForm>
+    <button (click)="toggleShow()">Cancelar</button>
+    <form>
+      <label htmlFor="name">Nombre: </label>
+      <input type="text" name="name" id="name" [(ngModel)]="name" />
+      <label htmlFor="image">URL de la imagen: </label>
+      <input type="text" name="image" id="image" [(ngModel)]="image" />
+      <label htmlFor="speed">Velocidad: </label>
+      <input
+        type="range"
+        min="1"
+        max="10"
+        name="speed"
+        id="speed"
+        [(ngModel)]="speed"
+      />
+      <label htmlFor="life">Resistencia: </label>
+      <input
+        type="range"
+        min="1"
+        max="10"
+        name="life"
+        id="life"
+        [(ngModel)]="life"
+      />
+      <label htmlFor="born">Fecha de construcción: </label>
+      <input
+        type="date"
+        min="1936-01-01"
+        max="1999-12-31"
+        name="born"
+        id="born"
+        [(ngModel)]="born"
+      />
+      <button type="submit">Aceptar</button>
+    </form>
+  </ng-template>
+</aside>

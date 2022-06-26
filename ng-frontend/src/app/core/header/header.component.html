@@ -1,0 +1,8 @@
+<h1>Robots</h1>
+<nav>
+  <ul>
+    <li *ngFor="let item of menuOptions">
+      <a [routerLink]="item.path">{{ item.label }}</a>
+    </li>
+  </ul>
+</nav>
