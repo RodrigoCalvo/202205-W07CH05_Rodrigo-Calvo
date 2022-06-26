@@ -12,7 +12,7 @@ export const addRobot = createAction(
 );
 export const updateRobot = createAction(
   actionTypes['robot@update'],
-  props<{ modifiedRobot: Partial<iRobot> }>()
+  props<{ id: iRobot['_id']; modifiedRobot: Partial<iRobot> }>()
 );
 export const deleteRobot = createAction(
   actionTypes['robot@delete'],
