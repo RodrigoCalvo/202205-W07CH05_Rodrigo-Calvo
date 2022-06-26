@@ -78,7 +78,12 @@ export function Edit({ id }: { id: string }) {
                             onChange={handleChange}
                             disabled={editableForm.name ? false : true}
                         />
-                        <button type="button" name="name" onClick={handleEdit}>
+                        <button
+                            data-testid="editBtn"
+                            type="button"
+                            name="name"
+                            onClick={handleEdit}
+                        >
                             ✍
                         </button>
                         <label htmlFor="image">URL de la imagen: </label>
@@ -90,7 +95,12 @@ export function Edit({ id }: { id: string }) {
                             onChange={handleChange}
                             disabled={editableForm.image ? false : true}
                         />
-                        <button type="button" name="image" onClick={handleEdit}>
+                        <button
+                            data-testid="editBtn"
+                            type="button"
+                            name="image"
+                            onClick={handleEdit}
+                        >
                             ✍
                         </button>
                         <label htmlFor="speed">
@@ -105,7 +115,12 @@ export function Edit({ id }: { id: string }) {
                             onChange={handleChange}
                             disabled={editableForm.speed ? false : true}
                         />
-                        <button type="button" name="speed" onClick={handleEdit}>
+                        <button
+                            data-testid="editBtn"
+                            type="button"
+                            name="speed"
+                            onClick={handleEdit}
+                        >
                             ✍
                         </button>
                         <label htmlFor="life">
@@ -120,7 +135,12 @@ export function Edit({ id }: { id: string }) {
                             onChange={handleChange}
                             disabled={editableForm.life ? false : true}
                         />
-                        <button type="button" name="life" onClick={handleEdit}>
+                        <button
+                            data-testid="editBtn"
+                            type="button"
+                            name="life"
+                            onClick={handleEdit}
+                        >
                             ✍
                         </button>
                         <label htmlFor="born">Fecha de construcción: </label>
@@ -134,7 +154,12 @@ export function Edit({ id }: { id: string }) {
                             onChange={handleChange}
                             disabled={editableForm.born ? false : true}
                         />
-                        <button type="button" name="born" onClick={handleEdit}>
+                        <button
+                            data-testid="editBtn"
+                            type="button"
+                            name="born"
+                            onClick={handleEdit}
+                        >
                             ✍
                         </button>
                         <button type="button" onClick={back}>
